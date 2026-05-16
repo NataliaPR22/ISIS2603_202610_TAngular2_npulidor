@@ -4,17 +4,21 @@
   </div>
   <div class="card-body">
 
-    <!-- TODO HU-03: Muestra un spinner mientras se carga el clima (usa la propiedad loading) -->
+    @if (loading) {
+      <p class="text-muted mb-0">Cargando clima...</p>
+    }
 
-    <!-- TODO HU-03: Muestra los datos de clima cuando estén disponibles:
-    - Temperatura: weatherDetail.temp_c °C
-    - Condición: weatherDetail.condition
-    - Humedad: weatherDetail.humidity %
-    -->
+    @if (!loading && weatherDetail) {
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Temperatura:</strong> {{ weatherDetail.temp_c }} °C</li>
+        <li class="list-group-item"><strong>Condición:</strong> {{ weatherDetail.condition }}</li>
+        <li class="list-group-item"><strong>Humedad:</strong> {{ weatherDetail.humidity }} %</li>
+      </ul>
+    }
 
-    <!-- TODO HU-03: Muestra un mensaje "No hay datos de clima disponibles" cuando no haya datos -->
-
-    <p class="text-muted mb-0">Clima no disponible.</p>
+    @if (!loading && !weatherDetail) {
+      <p class="text-muted mb-0">No hay datos de clima disponibles.</p>
+    }
 
   </div>
 </div>
